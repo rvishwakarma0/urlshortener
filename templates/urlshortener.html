@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+<link rel="stylesheet" href="{% static 'main.css' %}">
+<script src="{% static 'main.js' %}"></script>
+    <title>Best URL Shortener</title>
+
+</head>
+ 
+ <body>
+<div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+            </div>
+                   
+                    <form method="post">
+                    <h3>India's Best URL Shortener</h3>
+            
+                
+            
+               <div class="row">
+
+                    <div class="col-md-6">
+                      
+                       <div class="form-group">
+                            {% if full_url %}
+                            <textarea name="txtMsg" class="form-control" value="{{ full_url }}" placeholder="{{ full_url }}" style="width: 100%; height: 150px;"></textarea>
+                            {% else %}
+                            <textarea name="txtMsg" class="form-control" placeholder="Enter URL. . . (eg: https://google.com)" style="width: 100%; height: 150px;"></textarea>
+                            {% endif %}
+                            {% csrf_token %}
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="btnSubmit" class="btnContact" value="Short it!" />
+                        </div>
+                        
+                    </div>
+                
+
+                    <div class="col-md-6">
+                        
+                        <div class="form-group">
+
+                            {% if hash_url %}
+                            
+                            <textarea name="link" id="link" class="form-control" style="width: 100%; height: 150px;">{{ hash_url }}</textarea>
+                            
+                            {% elif err %}
+                            <textarea readonly name="link" class="form-control" style="width: 100%; height: 150px;">{{ err }}</textarea>
+
+                            {% else %}
+                            <textarea readonly name="link" id="link" class="form-control" placeholder="Shorted URL . . ." style="width: 100%; height: 150px;"></textarea>
+                            {% endif %}
+                        </div> 
+
+                        
+                        <div class="form-group">
+                             <button onclick="myFunction()" class="btnContact" style="background: green;" type="button">Copy it!</button>
+                        </div>  
+                    </div>
+                </div>
+                </form>
+            
+</div>
+</body>
+</html>
