@@ -5,9 +5,6 @@ from .models import URL
 def root(request,url_hash):
     url = get_object_or_404(URL,url_hash=url_hash)
     url.clicked()
-    if "http://" not in url.full_url:
-        res = "http://"+url.full_url
-        return redirect(res)
     return redirect(url.full_url)
 
 
